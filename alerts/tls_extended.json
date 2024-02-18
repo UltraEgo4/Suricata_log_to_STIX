@@ -1,0 +1,48 @@
+{
+    "timestamp": "2017-03-24T13:59:23.015318-0600",
+    "flow_id": 218710381613551,
+    "pcap_cnt": 1794,
+    "event_type": "alert",
+    "src_ip": "192.168.0.10",
+    "src_port": 60530,
+    "dest_ip": "172.67.189.152",
+    "dest_port": 443,
+    "proto": "TCP",
+    "alert": {
+      "action": "allowed",
+      "gid": 1,
+      "signature_id": 2018388,
+      "rev": 2,
+      "signature": "ET CURRENT_EVENTS Possible TLS HeartBleed Unencrypted Request Method 4 (Inbound to Common SSL Port)",
+      "category": "Potentially Bad Traffic",
+      "severity": 2,
+      "rule": "alert http any any -> any any (msg:\"SURICATA HTTP unable to match response to request\"; flow:established,to_client; app-layer-event:http.unable_to_match_response_to_request; flowint:http.anomaly.count,+,1; classtype:protocol-command-decode; sid:2221010; rev:1;)"
+    },
+    "tls": {
+      "subject": "C=--, ST=SomeState, L=SomeCity, O=SomeOrganization, OU=SomeOrganizationalUnit, CN=nancy.mee.seeks/emailAddress=root@nancy.mee.seeks",
+      "issuerdn": "C=--, ST=SomeState, L=SomeCity, O=SomeOrganization, OU=SomeOrganizationalUnit, CN=nancy.mee.seeks/emailAddress=root@nancy.mee.seeks",
+      "serial": "45:8A",
+      "fingerprint": "b2:9b:39:19:90:c1:c4:40:a3:97:18:75:52:1f:05:16:d2:f6:66:57",
+      "version": "TLS 1.1",
+      "notbefore": "2017-03-17T17:30:33",
+      "notafter": "2018-03-17T17:30:33"
+    },
+    "vars": {
+      "flowbits": {
+        "ET.MalformedTLSHB": true,
+        "ET.HB.Request.SI": true,
+        "ET.HB.Response.CI": true
+      },
+      "flowints": {
+        "tls.anomaly.count": 4
+      }
+    },
+    "app_proto": "tls",
+    "flow": {
+      "pkts_toserver": 29,
+      "pkts_toclient": 18,
+      "bytes_toserver": 2404,
+      "bytes_toclient": 36582,
+      "start": "2017-03-24T13:59:22.971247-0600"
+    }
+}

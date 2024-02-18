@@ -1,0 +1,115 @@
+[
+{
+    "type": "indicator",
+    "spec_version": "2.1",
+    "id": "indicator--09010459-18bc-4fb8-b0fc-0494fdd77a62",
+    "created": "2023-12-02T04:30:47.303672Z",
+    "modified": "2023-12-02T04:30:47.303672Z",
+    "name": "ET POLICY IP Check Domain (whatismyip in HTTP Host)",
+    "description": "Attempted Information Leak",
+    "indicator_types": [
+        "malicious-activity"
+    ],
+    "pattern": "alert http any any -> any any (msg:\"SURICATA HTTP unable to match response to request\"; flow:established,to_client; app-layer-event:http.unable_to_match_response_to_request; flowint:http.anomaly.count,+,1; classtype:protocol-command-decode; sid:2221010; rev:1;)",
+    "pattern_type": "suricata",
+    "valid_from": "2023-12-07T23:15:35.696597Z",
+    "severity": 2
+},
+{
+    "type": "incident",
+    "spec_version": "2.1",
+    "id": "incident--80c5b3a3-4fbd-4789-870e-2733ec71ca54",
+    "created": "2023-12-02T04:30:47.303672Z",
+    "modified": "2023-12-02T04:30:47.303672Z",
+    "name": "ET POLICY IP Check Domain (whatismyip in HTTP Host)"
+},
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--abb70680-c314-4b10-8d81-a12378880182",
+    "created": "2023-12-07T23:15:35.696597Z",
+    "modified": "2023-12-07T23:15:35.696597Z",
+    "relationship_type": "related-to",
+    "source_ref": "indicator--09010459-18bc-4fb8-b0fc-0494fdd77a62",
+    "target_ref": "incident--80c5b3a3-4fbd-4789-870e-2733ec71ca54"
+},
+{
+    "type": "ipv4-addr",
+    "spec_version": "2.1",
+    "id": "ipv4-addr--c5033b72-7a0a-579e-b974-d69bddeec8c0",
+    "value": "10.47.5.153"
+},
+{
+    "type": "ipv4-addr",
+    "spec_version": "2.1",
+    "id": "ipv4-addr--e025eb31-16d5-5fc1-a476-28dbd850cd49",
+    "value": "192.168.0.10"
+},
+{
+    "type": "network-traffic",
+    "spec_version": "2.1",
+    "id": "network-traffic--86ebdc56-2293-5fc3-a334-00ebf2fb817b",
+    "start": "2018-03-23T21:09:23.153914Z",
+    "src_ref": "ipv4-addr--c5033b72-7a0a-579e-b974-d69bddeec8c0",
+    "dst_ref": "ipv4-addr--e025eb31-16d5-5fc1-a476-28dbd850cd49",
+    "src_port": 63329,
+    "dst_port": 80,
+    "protocols": [
+        "ipv4",
+        "TCP",
+        "http"
+    ],
+    "src_byte_count": 1192,
+    "dst_byte_count": 1598,
+    "src_packets": 7,
+    "dst_packets": 8,
+    "extensions": {
+        "http-request-ext": {
+            "request_method": "GET",
+            "request_value": "/",
+            "request_version": "HTTP/1.1",
+            "request_header": {
+                "Hostname": "www.whatismyip.com",
+                "User-Agent": "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36"
+            },
+            "message_body_length": 180
+        }
+    }
+},
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--c53f0063-b1e5-4d9e-a3fe-9c04618d783c",
+    "created": "2023-12-07T23:15:35.696597Z",
+    "modified": "2023-12-07T23:15:35.696597Z",
+    "relationship_type": "related-to",
+    "source_ref": "network-traffic--86ebdc56-2293-5fc3-a334-00ebf2fb817b",
+    "target_ref": "indicator--09010459-18bc-4fb8-b0fc-0494fdd77a62"
+},
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--d819a6df-e91a-4aab-a252-2f040fe077c4",
+    "created": "2023-12-07T23:15:35.696597Z",
+    "modified": "2023-12-07T23:15:35.696597Z",
+    "relationship_type": "related-to",
+    "source_ref": "ipv4-addr--c5033b72-7a0a-579e-b974-d69bddeec8c0",
+    "target_ref": "network-traffic--86ebdc56-2293-5fc3-a334-00ebf2fb817b"
+},
+{
+    "type": "relationship",
+    "spec_version": "2.1",
+    "id": "relationship--a0965c09-753a-411e-a5bd-11a7fe67a643",
+    "created": "2023-12-07T23:15:35.696597Z",
+    "modified": "2023-12-07T23:15:35.696597Z",
+    "relationship_type": "related-to",
+    "source_ref": "ipv4-addr--e025eb31-16d5-5fc1-a476-28dbd850cd49",
+    "target_ref": "network-traffic--86ebdc56-2293-5fc3-a334-00ebf2fb817b"
+},
+{
+    "type": "domain-name",
+    "spec_version": "2.1",
+    "id": "domain-name--519d9e14-c9e2-5559-b4c6-35aa8f5d538d",
+    "value": "www.whatismyip.com"
+}
+]

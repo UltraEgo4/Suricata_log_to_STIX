@@ -1,0 +1,52 @@
+{
+  "timestamp": "2018-03-23T21:34:21.731923+0100",
+  "flow_id": 2106122655627620,
+  "event_type": "alert",
+  "src_ip": "10.47.6.156",
+  "src_port": 5357,
+  "dest_ip": "10.128.0.247",
+  "dest_port": 50563,
+  "proto": "TCP",
+  "metadata": {
+    "flowints": {
+      "http.anomaly.count": 1
+    }
+  },
+  "tx_id": 0,
+  "alert": {
+    "action": "allowed",
+    "gid": 1,
+    "signature_id": 2221010,
+    "rev": 1,
+    "signature": "SURICATA HTTP unable to match response to request",
+    "category": "Generic Protocol Command Decode",
+    "severity": 3,
+    "rule": "alert http any any -> any any (msg:\"SURICATA HTTP unable to match response to request\"; flow:established,to_client; app-layer-event:http.unable_to_match_response_to_request; flowint:http.anomaly.count,+,1; classtype:protocol-command-decode; sid:2221010; rev:1;)"
+  },
+  "http": {
+    "http_port": 0,
+    "url": "/libhtp::request_uri_not_seen",
+    "http_content_type": "text/html",
+    "status": 400,
+    "length": 311
+  },
+  "files": [
+    {
+      "filename": "/libhtp::request_uri_not_seen",
+      "sid": [],
+      "gaps": false,
+      "state": "CLOSED",
+      "stored": false,
+      "size": 311,
+      "tx_id": 0
+    }
+  ],
+  "app_proto": "http",
+  "flow": {
+    "pkts_toserver": 10,
+    "pkts_toclient": 6,
+    "bytes_toserver": 612,
+    "bytes_toclient": 1340,
+    "start": "2018-03-23T21:34:05.391524+0100"
+  }
+}

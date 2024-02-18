@@ -1,0 +1,41 @@
+ {
+    "timestamp": "2015-03-21T02:20:25.821320-0600",
+    "flow_id": 1525285321803848,
+    "pcap_cnt": 51463,
+    "event_type": "alert",
+    "src_ip": "93.174.93.218",
+    "src_port": 54075,
+    "dest_ip": "192.168.0.2",
+    "dest_port": 80,
+    "proto": "TCP",
+    "alert": {
+      "action": "allowed",
+      "gid": 1,
+      "signature_id": 2403399,
+      "rev": 43922,
+      "signature": "ET CINS Active Threat Intelligence Poor Reputation IP group 100",
+      "category": "Misc Attack",
+      "severity": 2,
+      "rule": "alert http any any -> any any (msg:\"SURICATA HTTP unable to match response to request\"; flow:established,to_client; app-layer-event:http.unable_to_match_response_to_request; flowint:http.anomaly.count,+,1; classtype:protocol-command-decode; sid:2221010; rev:1;)"
+    },
+    "flow": {
+      "pkts_toserver": 1,
+      "pkts_toclient": 0,
+      "bytes_toserver": 64,
+      "bytes_toclient": 0,
+      "start": "2015-03-21T02:20:25.821320-0600"
+    },
+    "dns": {
+      "type": "answer",
+      "id":16000,
+      "flags":"8180",
+      "qr":true,
+      "rd":true,
+      "ra":true,
+      "rcode":"NOERROR",
+      "rrname": "twitter.com",
+      "rrtype":"A",
+      "ttl":8,
+      "rdata": "199.16.156.6"
+  }
+  }

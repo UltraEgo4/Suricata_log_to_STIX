@@ -1,0 +1,33 @@
+{
+    "timestamp": "2015-03-11T03:57:49.425143-0600",
+    "flow_id": 1337517536047498,
+    "pcap_cnt": 257489,
+    "event_type": "alert",
+    "src_ip": "192.168.0.51",
+    "src_port": 35736,
+    "dest_ip": "108.175.144.81",
+    "dest_port": 443,
+    "proto": "TCP",
+    "tx_id": 0,
+    "alert": {
+      "action": "allowed",
+      "gid": 1,
+      "signature_id": 2230010,
+      "rev": 1,
+      "signature": "SURICATA TLS invalid record/traffic",
+      "category": "Generic Protocol Command Decode",
+      "severity": 3
+    },
+    "tls": {
+      "sni": "www.arvixe.com",
+      "version": "0xb084"
+    },
+    "app_proto": "tls",
+    "flow": {
+      "pkts_toserver": 6,
+      "pkts_toclient": 4,
+      "bytes_toserver": 595,
+      "bytes_toclient": 1905,
+      "start": "2015-03-11T03:57:49.061834-0600"
+    }
+  }

@@ -1,0 +1,53 @@
+{
+    "timestamp": "2023-12-01T22:30:47.303672-0600",
+    "flow_id": 1594227117218106,
+    "pcap_cnt": 1373851,
+    "event_type": "alert",
+    "src_ip": "192.168.0.10",
+    "src_port": 63329,
+    "dest_ip": "172.67.189.152",
+    "dest_port": 80,
+    "proto": "TCP",
+    "tx_id": 0,
+    "alert": {
+      "action": "allowed",
+      "gid": 1,
+      "signature_id": 2008986,
+      "rev": 7,
+      "signature": "ET POLICY IP Check Domain (whatismyip in HTTP Host)",
+      "category": "Attempted Information Leak",
+      "severity": 2,
+      "rule": "alert http any any -> any any (msg:\"SURICATA HTTP unable to match response to request\"; flow:established,to_client; app-layer-event:http.unable_to_match_response_to_request; flowint:http.anomaly.count,+,1; classtype:protocol-command-decode; sid:2221010; rev:1;)"
+    },
+    "flow": {
+        "pkts_toserver": 7,
+        "pkts_toclient": 8,
+        "bytes_toserver": 1192,
+        "bytes_toclient": 1598,
+        "start": "2018-03-23T15:09:23.153914-0600"
+      },
+      "ssh": {
+        "client": {
+            "proto_version": "2.0",
+            "software_version": "OpenSSH_6.7",
+            "hassh": {
+                "hash": "ec7378c1a92f5a8dde7e8b7a1ddf33d1",
+                "string": "curve25519-sha256,diffie-hellman-group14-sha256,diffie-hellman-group14-sha1,ext-info-c"
+            }
+         },
+        "server": {
+            "proto_version": "2.0",
+            "software_version": "OpenSSH_6.7",
+            "hassh": {
+                "hash": "ec7378c1a92f5a8dde7e8b7a1ddf33d1",
+                "string": "curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256"
+            }
+         }
+      },
+      "tftp": {
+        "packet": "write",
+        "file": "rfc1350.txt",
+        "mode": "octet"
+     }
+
+}

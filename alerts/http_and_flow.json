@@ -1,0 +1,42 @@
+{
+    "timestamp": "2023-12-01T22:30:47.303672-0600",
+    "flow_id": 1594227117218106,
+    "pcap_cnt": 1373851,
+    "event_type": "alert",
+    "src_ip": "10.47.5.153",
+    "src_port": 63329,
+    "dest_ip": "192.168.0.10",
+    "dest_port": 80,
+    "proto": "TCP",
+    "tx_id": 0,
+    "alert": {
+      "action": "allowed",
+      "gid": 1,
+      "signature_id": 2008986,
+      "rev": 7,
+      "signature": "ET POLICY IP Check Domain (whatismyip in HTTP Host)",
+      "category": "Attempted Information Leak",
+      "severity": 2,
+      "rule": "alert http any any -> any any (msg:\"SURICATA HTTP unable to match response to request\"; flow:established,to_client; app-layer-event:http.unable_to_match_response_to_request; flowint:http.anomaly.count,+,1; classtype:protocol-command-decode; sid:2221010; rev:1;)"
+    },
+    "app_proto": "http",
+    "flow": {
+      "pkts_toserver": 7,
+      "pkts_toclient": 8,
+      "bytes_toserver": 1192,
+      "bytes_toclient": 1598,
+      "start": "2018-03-23T15:09:23.153914-0600"
+    },
+    "http": {
+      "hostname": "www.whatismyip.com",
+      "url": "/",
+      "http_user_agent": "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36",
+      "http_content_type": "text/html",
+      "http_method": "GET",
+      "protocol": "HTTP/1.1",
+      "status": 301,
+      "redirect": "https://www.whatismyip.com/",
+      "length": 180
+    }
+  
+}

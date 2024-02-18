@@ -1,0 +1,27 @@
+//Create Nodes
+
+WITH "http://192.168.1.235:9200/network_discovery/_search/?size=100" AS url
+CALL apoc.load.json(url) YIELD value
+UNWIND value.hits.hits as data
+WITH * WHERE data._source.type <> "relationship"
+CALL apoc.create.node([data._source.type], {}) YIELD node as anode
+WITH anode, data._source as sourceData
+SET anode += apoc.map.flatten(sourceData)
+RETURN anode;
+
+//Create relationships between nodes
+
+WITH "http://192.168.1.235:9200/network_discovery/_search/?size=100" AS url
+CALL apoc.load.json(url) YIELD value
+UNWIND value.hits.hits AS data
+WITH data._source AS sourceData
+WHERE sourceData.type = "relationship"
+MATCH (f) WHERE f.id = sourceData.source_ref
+MATCH (t) WHERE t.id = sourceData.target_ref
+CALL apoc.create.relationship(f, sourceData.relationship_type, {}, t) YIELD rel as r
+WITH r, sourceData
+CALL apoc.create.setRelProperties(r, keys(sourceData), [k IN keys(sourceData) | sourceData[k]]) YIELD rel as final
+RETURN final;
+
+
+
